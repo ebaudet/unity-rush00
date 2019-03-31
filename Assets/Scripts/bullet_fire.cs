@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet_fire : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+public class bullet_fire : MonoBehaviour
+{
 	void Update () {
         Debug.Log("update = " + GetComponent<BoxCollider2D>().enabled);
 	}

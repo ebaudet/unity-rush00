@@ -2,32 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundColorRandom : MonoBehaviour {
-	public float colorDuration = 1;
-	
-	private Camera cam;
-	private float timer = 0;
-	private float duration = 3.0F;
-	private Color newColor;
-	private Color oldColor;
-	// Use this for initialization
-	void Start () {
-		cam = GetComponent<Camera>();
-        cam.clearFlags = CameraClearFlags.SolidColor;
-		oldColor = cam.backgroundColor;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (timer >= colorDuration)
-		{
-			timer = 0;
-			oldColor = cam.backgroundColor;
-			newColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
-			
-		}
-		timer += Time.deltaTime;
-		float t = Mathf.PingPong(Time.time, duration) / duration;
-		cam.backgroundColor = Color.Lerp(oldColor, newColor, t);
-	}
+public class BackgroundColorRandom : MonoBehaviour
+{
+    public float transitionTimeInSec = 2f;
+
+    private bool changingColor = false;
+
+    private Color color1;
+    private Color color2;
+
+
+    void Start()
+    {
+        StartCoroutine(beginToChangeColor());
+    }
+
+    IEnumerator beginToChangeColor()
+    {
+        Camera cam = Camera.main;
+        color1 = Random.ColorHSV(Random.value, Random.value);
+        color2 = Random.ColorHSV(Random.value, Random.value);
+
+        while (true)
+        {
+            yield return lerpColor(cam, color1, color2, transitionTimeInSec);
+            color1 = cam.backgroundColor;
+            color2 = Random.ColorHSV(Random.value, Random.value);
+        }
+    }
+
+    IEnumerator lerpColor(Camera targetCamera, Color fromColor, Color toColor, float duration)
+    {
+        if (changingColor)
+            yield break;
+        changingColor = true;
+        float counter = 0;
+
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            float colorTime = counter / duration;
+            targetCamera.backgroundColor = Color.Lerp(fromColor, toColor, counter / duration);
+            yield return null;
+        }
+        changingColor = false;
+    }
 }

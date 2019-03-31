@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicManager : MonoBehaviour {
+public class MusicManager : MonoBehaviour
+{
 	public List<AudioClip>	musics = new List<AudioClip>();
 
 	private AudioSource _source;
