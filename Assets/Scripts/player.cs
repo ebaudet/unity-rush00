@@ -10,7 +10,7 @@ public class player : MonoBehaviour {
     public GameObject   weapon_sprite;
     public Weapon       weapon = null;
     public float        speed;
-    public delegate     void GunShoot(Vector2 pos, float dist);
+    public delegate     void GunShoot(Vector3 pos, float dist);
     public event GunShoot OnGunShooted;
 
     private Vector3     direction;
@@ -48,8 +48,7 @@ public class player : MonoBehaviour {
             Debug.Log("Raised event: OnGunShooted");
             OnGunShooted(transform.position, weapon.sound_propagation);
         }
-
-                
+               
         float vertical = 0;
         float horizontal = 0;
         if (getKeyDown())
@@ -68,7 +67,6 @@ public class player : MonoBehaviour {
 
         if (take != null)
             take_weapon();
-        Debug.Log("rotation = " +Vector3.down);
 	}
 
 	private void FixedUpdate()
