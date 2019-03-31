@@ -4,23 +4,25 @@ using UnityEngine;
 using UnityEditor;
 
 public class enemi : MonoBehaviour {
-
     private GameObject head;
     private GameObject weapon;
+    public player player;
+    public Vector2 isAlerted = Vector2.zero;
 
     void OnEnable()
     {
-        player.instance.OnGunShooted += ListenBullet;
+        player.OnGunShooted += ListenBullet;
     }
 
     void OnDisable()
     {
-        player.instance.OnGunShooted -= ListenBullet;
+        player.OnGunShooted -= ListenBullet;
     }
 
     void ListenBullet(Vector2 pos, float dist)
     {
-        
+        if (Vector2.Distance(pos, transform.position) <= dist)
+            isAlerted = pos;
     }
 
 	// Use this for initialization
@@ -43,6 +45,14 @@ public class enemi : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (isAlerted != Vector2.zero)
+        {
+            Debug.Log("Enemi is alerted");
+            float angle = Mathf.Atan2(isAlerted.y - transform.position.y, isAlerted.x - transform.position.x) * Mathf.Rad2Deg;
+            // bullet_rotation = Quaternion.Euler(0, 0, transform.rotation.z + angle);
+            angle += 90;
+            transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + angle);
+            isAlerted = Vector2.zero;
+        }
 	}
 }

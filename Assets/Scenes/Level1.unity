@@ -569,7 +569,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4864705565045886, guid: ac9430cf4cc7e4c76acdaee1db996e84, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114485682466019488, guid: ac9430cf4cc7e4c76acdaee1db996e84,
         type: 2}
@@ -5047,6 +5047,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 50.973003
       objectReference: {fileID: 0}
+    - target: {fileID: 114752351860049104, guid: 9099e46dec1f54b07bd3566a7a65e982,
+        type: 2}
+      propertyPath: sound_propagation
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9099e46dec1f54b07bd3566a7a65e982, type: 2}
   m_IsPrefabParent: 0
@@ -5087,8 +5092,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4465732502255442, guid: 349bb0fb9ecae41328579c73982bb88c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114347416359142728, guid: 349bb0fb9ecae41328579c73982bb88c,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1906201232}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349bb0fb9ecae41328579c73982bb88c, type: 2}
   m_IsPrefabParent: 0
