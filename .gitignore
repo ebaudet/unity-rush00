@@ -6,6 +6,7 @@
 # ============
 .DS_Store
 ._*
+.idea/
 .Spotlight-V100
 .Trashes
 Icon?
@@ -35,3 +36,6 @@ sysinfo.txt
 .vscode/
 Temp/
 Library/
+
+Logs/
+Packages/
